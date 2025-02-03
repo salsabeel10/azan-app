@@ -12,6 +12,14 @@ const ListOfTimes = () => {
 
   console.log(formattedDate)
 
+  const convertTo12Hour = (time24) => {
+    let [hours, minutes] = time24.split(':').map(Number)
+    let period = hours >= 12 ? 'PM' : 'AM'
+    hours = hours % 12 || 12 // Convert 0 to 12
+    return `${hours}:${String(minutes).padStart(2, '0')} ${period}`
+  }
+
+
   if (loading) return <p className="text-center">Loading...</p>
   if (error) return <p className="text-center text-red-500">{error}</p>
   if (!prayerTimes) return <p className="text-center">No data available</p>
@@ -41,8 +49,8 @@ const ListOfTimes = () => {
               }`}
             >
               <span className="font-medium text-lg">{prayer}</span>
-              <span className="text-lg font-semibold">
-                {prayerTimes[prayer]}
+              <span className="text-md font-semibold">
+                {convertTo12Hour(prayerTimes[prayer])}
               </span>
             </li>
           ) : null
