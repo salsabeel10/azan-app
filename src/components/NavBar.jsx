@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { formattedDate } from '../store/timeFormat'
+import { Link } from 'react-router-dom'
+
 
 const NavBar = () => {
     const [currentTime, setCurrentTime] = useState('')
@@ -22,10 +24,14 @@ const NavBar = () => {
     <div>
       <div className="navbar shadow-sm border-b border-b-gray-300">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Azan Times</a>
+          <p className="btn btn-ghost text-xl">
+            <Link to={'/'}>Azan Times</Link>
+          </p>
         </div>
-        <div className='flex-1 pr-32'>
-          <a className="btn btn-ghost text-lg text-center">Al Nahada, Sharjah</a>
+        <div className="flex-1 pr-32">
+          <p className="btn btn-ghost text-lg text-center">
+            <Link to={'/search'}>Al Nahada, Sharjah</Link>
+          </p>
         </div>
         <div className="flex-none">
           <span className="text-sm">{formattedDate}</span>
