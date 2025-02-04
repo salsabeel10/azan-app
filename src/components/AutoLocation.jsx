@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
 
 const AutoLocation = () => {
-  const { latitude, longitude, fetchLocation, setLatitude, setLongitude } =
-    usePrayerTimeStore()
-  
-  const handleSubmit = (e) => {
+  const {
+    latitude,
+    longitude,
+    fetchLocation,
+    setLatitude,
+    setLongitude,
+    prayerTimes,
+    fetchPrayerByCoordinate,
+  } = usePrayerTimeStore()
+
+  const handleSubmit =async (e) => {
     e.preventDefault()
-    console.log("latitude",latitude)
-    console.log("longitude",longitude)
+    await fetchPrayerByCoordinate()
+    console.log(prayerTimes)
   }
   return (
     <div className="flex justify-center items-center">
@@ -36,7 +43,7 @@ const AutoLocation = () => {
               type="search"
               required
               value={latitude}
-              onChange={(e)=>setLatitude(e.target.value)}
+              onChange={(e) => setLatitude(e.target.value)}
               placeholder="Latitude"
               className="outline-none px-2"
             />
@@ -61,7 +68,7 @@ const AutoLocation = () => {
             <input
               type="search"
               value={longitude}
-              onChange={(e)=>setLongitude(e.target.value)}
+              onChange={(e) => setLongitude(e.target.value)}
               required
               placeholder="Longitude"
               className="outline-none px-2"

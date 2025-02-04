@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import axios from 'axios'
 import { formattedDate } from './timeFormat'
 
-const usePrayerTimeStore = create((set) => ({
+const usePrayerTimeStore = create((set, get) => ({
   prayerTimes: null,
   loading: false,
   error: null,
@@ -23,6 +23,7 @@ const usePrayerTimeStore = create((set) => ({
       set({ error: 'Failed to fetch prayer times', loading: false })
     }
   },
+
   //radio button mode
   setLocationType: (type) => set({ locationType: type }),
 
@@ -46,6 +47,27 @@ const usePrayerTimeStore = create((set) => ({
   },
   setLatitude: (lat) => set({ latitude: lat }),
   setLongitude: (lon) => set({ longitude: lon }),
+  
+  fetchPrayerByCoordinate: async () => {
+    set({ loading: true, error: null })
+
+    const { latitude, longitude } = get()
+    if (!latitude || !longitude) {
+      set({ error: 'Latitude and Longitude are required', loading: false })
+      return
+    }
+
+    try {
+      const response = await axios.get(
+        `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=${latitude}&longitude=${longitude}&method=3&calendarMethod=UAQ&midnightMode=1`
+      )
+
+      set({ prayerTimes: response.data.data.timings, loading: false })
+    } catch (error) {
+      console.error('Error fetching prayer times:', error)
+      set({ error: 'Failed to fetch prayer times', loading: false })
+    }
+  },
 }))
 
 export default usePrayerTimeStore
