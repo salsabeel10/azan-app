@@ -63,17 +63,15 @@ const AutoLocation = () => {
             onClick={handleSubmit}
             className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 hover:cursor-pointer"
           >
+            Fetch
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 hover:cursor-pointer"
+          >
             Search
           </button>
         </div>
-
-        {/* Auto Fetch Button - Positioned Below */}
-        <button
-          
-          className="bg-gray-600 text-white text-md px-3 py-1 rounded-lg hover:bg-gray-500 hover:cursor-pointer mt-2"
-        >
-          Auto Fetch
-        </button>
       </div>
     </div>
   )
