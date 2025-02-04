@@ -1,12 +1,26 @@
 import React, { useState } from 'react'
-import RadioButtons from './RadioButtons'
+import usePrayerTimeStore from '../store/usePrayerTimeStore'
+import { useNavigate } from 'react-router-dom'
 
 const InputField = () => {
-  const [location, setLocation] = useState('')
+  const {
+    address,
+    setAddress,
+    fetchPrayerTimes,
+    prayerTimes,
+    fetchType,
+    setFetchType,
+  } = usePrayerTimeStore()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
+    setFetchType('address')
     e.preventDefault()
+    fetchPrayerTimes(fetchType)
+    console.log(prayerTimes)
+    navigate('/')
   }
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex items-center gap-2 p-4 rounded-lg shadow-lg mt-28">
@@ -29,10 +43,10 @@ const InputField = () => {
           </svg>
           <input
             type="search"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             required
-            placeholder="Enter Location"
+            placeholder="eg: Dubai, UAE"
             className="outline-none px-2"
           />
         </label>

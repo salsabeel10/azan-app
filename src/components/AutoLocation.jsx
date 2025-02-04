@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
+import { useNavigate } from 'react-router-dom'
+
 
 const AutoLocation = () => {
   const {
@@ -9,13 +11,18 @@ const AutoLocation = () => {
     setLatitude,
     setLongitude,
     prayerTimes,
-    fetchPrayerByCoordinate,
+    fetchPrayerTimes,
+    fetchType,
+    setFetchType,
   } = usePrayerTimeStore()
+  const navigate =useNavigate()
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = (e) => {
+    setFetchType("coordinate")
     e.preventDefault()
-    await fetchPrayerByCoordinate()
+    fetchPrayerTimes(fetchType)
     console.log(prayerTimes)
+    navigate('/')
   }
   return (
     <div className="flex justify-center items-center">

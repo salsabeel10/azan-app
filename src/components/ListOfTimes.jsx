@@ -3,14 +3,12 @@ import usePrayerTimeStore from '../store/usePrayerTimeStore'
 import { formattedDate } from '../store/timeFormat'
 
 const ListOfTimes = () => {
-  const { prayerTimes, fetchPrayerTimes, loading, error } = usePrayerTimeStore()
+  const { prayerTimes, fetchPrayerTimes, loading, error, fetchType } =
+    usePrayerTimeStore()
 
   useEffect(() => {
-    fetchPrayerTimes()
-  }, [])
-  console.log(prayerTimes)
-
-  console.log(formattedDate)
+    fetchPrayerTimes(fetchType)
+  }, [fetchType])
 
   const convertTo12Hour = (time24) => {
     let [hours, minutes] = time24.split(':').map(Number)
@@ -18,7 +16,6 @@ const ListOfTimes = () => {
     hours = hours % 12 || 12 // Convert 0 to 12
     return `${hours}:${String(minutes).padStart(2, '0')} ${period}`
   }
-
 
   if (loading) return <p className="text-center">Loading...</p>
   if (error) return <p className="text-center text-red-500">{error}</p>

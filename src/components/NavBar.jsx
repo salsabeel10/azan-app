@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { formattedDate } from '../store/timeFormat'
 import { Link } from 'react-router-dom'
+import usePrayerTimeStore from '../store/usePrayerTimeStore'
+
 
 
 const NavBar = () => {
     const [currentTime, setCurrentTime] = useState('')
+    const {address} =usePrayerTimeStore()
 
     useEffect(() => {
       // Function to update time every second
@@ -28,9 +31,9 @@ const NavBar = () => {
             <Link to={'/'}>Azan Times</Link>
           </p>
         </div>
-        <div className="flex-1 pr-32">
+        <div className="flex-1 pr-14">
           <p className="btn btn-ghost text-lg text-center">
-            <Link to={'/search'}>Al Nahada, Sharjah</Link>
+            <Link to={'/search'}>{address||'Search'}</Link>
           </p>
         </div>
         <div className="flex-none">
