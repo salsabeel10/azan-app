@@ -7,6 +7,8 @@ const usePrayerTimeStore = create((set) => ({
   loading: false,
   error: null,
   locationType: 'manual',
+  latitude: '',
+  longitude: '',
 
   fetchPrayerTimes: async () => {
     set({ loading: true, error: null })
@@ -21,7 +23,29 @@ const usePrayerTimeStore = create((set) => ({
       set({ error: 'Failed to fetch prayer times', loading: false })
     }
   },
+  //radio button mode
   setLocationType: (type) => set({ locationType: type }),
+
+  fetchLocation: () => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          set({
+            latitude: position.coords.latitude.toString(),
+            longitude: position.coords.longitude.toString(),
+          })
+        },
+        (error) => {
+          console.error('Error fetching location:', error)
+          alert('Unable to retrieve location.')
+        }
+      )
+    } else {
+      alert('Geolocation is not supported by your browser.')
+    }
+  },
+  setLatitude: (lat) => set({ latitude: lat }),
+  setLongitude: (lon) => set({ longitude: lon }),
 }))
 
 export default usePrayerTimeStore
