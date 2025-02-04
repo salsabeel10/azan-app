@@ -6,6 +6,7 @@ const usePrayerTimeStore = create((set) => ({
   prayerTimes: null,
   loading: false,
   error: null,
+  locationType: 'manual',
 
   fetchPrayerTimes: async () => {
     set({ loading: true, error: null })
@@ -20,6 +21,7 @@ const usePrayerTimeStore = create((set) => ({
       set({ error: 'Failed to fetch prayer times', loading: false })
     }
   },
+  setLocationType: (type) => set({ locationType: type }),
 }))
 
 export default usePrayerTimeStore
