@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
 import { useNavigate } from 'react-router-dom'
 
-
 const AutoLocation = () => {
   const {
     latitude,
@@ -15,10 +14,10 @@ const AutoLocation = () => {
     fetchType,
     setFetchType,
   } = usePrayerTimeStore()
-  const navigate =useNavigate()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    setFetchType("coordinate")
+    setFetchType('coordinate')
     e.preventDefault()
     fetchPrayerTimes(fetchType)
     console.log(prayerTimes)
@@ -76,6 +75,11 @@ const AutoLocation = () => {
               type="search"
               value={longitude}
               onChange={(e) => setLongitude(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && latitude.trim() && longitude.trim()) {
+                  handleSubmit(e)
+                }
+              }}
               required
               placeholder="Longitude"
               className="outline-none px-2"
@@ -83,13 +87,26 @@ const AutoLocation = () => {
           </label>
           <button
             onClick={fetchLocation}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && latitude.trim() && longitude.trim()) {
+                handleSubmit(e)
+              }
+            }}
             className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 hover:cursor-pointer"
           >
             Fetch
           </button>
           <button
-            onClick={handleSubmit}
-            className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 hover:cursor-pointer"
+            onClick={(e) => {
+              if (!latitude.trim() || !longitude.trim()) return // Prevent submission if input is empty
+              handleSubmit(e)
+            }}
+            className={`px-4 py-2 rounded-lg ${
+              latitude.trim() && longitude.trim()
+                ? 'bg-gray-600 text-white hover:bg-gray-500 cursor-pointer'
+                : 'bg-gray-400 text-black cursor-not-allowed'
+            }`}
+            disabled={!latitude.trim() || !longitude.trim()} // Disable button when input is empty
           >
             Search
           </button>

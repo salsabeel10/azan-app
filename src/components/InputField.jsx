@@ -45,14 +45,27 @@ const InputField = () => {
             type="search"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            required
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && address.trim()) {
+                handleSubmit(e)
+              }
+            }}
             placeholder="eg: Dubai, UAE"
             className="outline-none px-2"
+            required
           />
         </label>
         <button
-          onClick={handleSubmit}
-          className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-500 hover:cursor-pointer"
+          onClick={(e) => {
+            if (!address.trim()) return // Prevent submission if input is empty
+            handleSubmit(e)
+          }}
+          className={`px-4 py-2 rounded-lg ${
+            address.trim()
+              ? 'bg-gray-600 text-white hover:bg-gray-500 cursor-pointer'
+              : 'bg-gray-400 text-black cursor-not-allowed'
+          }`}
+          disabled={!address.trim()} // Disable button when input is empty
         >
           Search
         </button>
