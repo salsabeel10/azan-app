@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
-import { formattedDate } from '../store/timeFormat'
 
 const ListOfTimes = () => {
   const { prayerTimes, fetchPrayerTimes, loading, error, fetchType } =
@@ -33,17 +32,47 @@ const ListOfTimes = () => {
     'Lastthird',
   ]
 
+  const getNextPrayerTime = (prayerTimes) => {
+    const now = new Date()
+    const currentTime = now.getHours() * 60 + now.getMinutes() // Convert current time to minutes
+
+    const sortedPrayers = orderedPrayers
+      .map((prayer) => ({
+        prayer,
+        time: prayerTimes[prayer],
+      }))
+      .filter(({ time }) => time) // Filter out undefined times
+      .map(({ prayer, time }) => {
+        const [hours, minutes] = time.split(':').map(Number)
+        const totalMinutes = hours * 60 + minutes
+        return { prayer, totalMinutes }
+      })
+
+    const nextPrayer = sortedPrayers.find(
+      ({ totalMinutes }) => totalMinutes > currentTime
+    )
+
+    return nextPrayer ? nextPrayer.prayer : sortedPrayers[0]?.prayer // Fallback to the first prayer
+  }
+
+  const nextPrayer = getNextPrayerTime(prayerTimes)
+
+  console.log('Next Prayer:', nextPrayer) // Debugging
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <ul className="rounded-xl w-80 text-white p-1 mb-22">
-        {/* Prayer Times List */}
         {orderedPrayers.map((prayer, index) =>
           prayerTimes[prayer] ? (
             <li
               key={prayer}
               className={`flex justify-between items-center px-4 py-3 border-b border-gray-600 rounded-xl mb-3 mt-2 ${
                 index % 2 === 0 ? 'bg-base-100' : 'bg-base-200'
-              }`}
+              } ${
+                prayer === nextPrayer
+                  ? 'border border-sky-300'
+                  : ''
+              }`} // Apply border styling
             >
               <span className="font-medium text-lg">{prayer}</span>
               <span className="text-md font-semibold">
@@ -52,9 +81,6 @@ const ListOfTimes = () => {
             </li>
           ) : null
         )}
-
-        {/* Bottom Rounded Edge */}
-        <li className="rounded-b-xl"></li>
       </ul>
     </div>
   )
