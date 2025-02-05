@@ -26,7 +26,7 @@ const NavBar = () => {
     <div>
       <div className="navbar shadow-sm border-b border-b-gray-300">
         <div className="flex-1">
-          <p className="btn btn-ghost text-xl">
+          <p className="btn btn-ghost text-xl  hover:border-gray-700">
             <Link to={'/'}>Azan Times</Link>
           </p>
         </div>
