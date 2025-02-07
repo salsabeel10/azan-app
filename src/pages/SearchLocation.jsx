@@ -8,7 +8,7 @@ import usePrayerTimeStore from '../store/usePrayerTimeStore'
 const SearchLocation = () => {
   const {locationType} = usePrayerTimeStore()
   return (
-    <div className="bg-[#1A1A1D] min-h-screen">
+    <div className=" min-h-screen">
       <NavBar />
       <div className="flex flex-col items-center gap-5">
         {/* Wrap InputField & RadioButtons */}
