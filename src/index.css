@@ -20,11 +20,11 @@
 
 /* light theme 8AA6A3 */
 @theme{
-  --color-navbar: #4C5958; /* Pure white for a clean navbar */
-  --color-body: #BFBFBF; /* Slightly warmer light gray for a softer look */
-  --color-listBgEv: #8AA6A3; /* Soft, neutral gray-blue for even list items */
-  --color-listBgOd: #4C5958; /* Slightly darker gray-blue for odd list items */
-  --color-listBorder: #127369; /* Softer border to blend better */
-  --color-listText: #ffff; /* Darker shade for better readability */
+  --color-navbar: #578E7E; /* Slightly warmer light gray for a softer look */
+  --color-body: #FFFAEC; /* Pure white for a clean navbar */
+  --color-listBgEv: #578E7E; /* A slightly darker gray-blue for odd list items */
+  --color-listBgOd: #3D3D3D; /* A darker shade of gray-blue for even list items */
+  --color-listBorder: #F5EFFF; /* Softer border to blend better */
+  --color-listText: #ffff;
 }
 

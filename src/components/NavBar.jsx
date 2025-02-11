@@ -41,7 +41,7 @@ const NavBar = () => {
           </p>
         </div>
 
-        <div className="flex-none">
+        <div className="flex-none text-white">
           <span className="text-sm">{formattedDate}</span>
           <br />
           <span className="text-sm pl-3">{currentTime}</span>
