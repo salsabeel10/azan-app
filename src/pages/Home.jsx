@@ -4,10 +4,10 @@ import ListOfTimes from '../components/ListOfTimes'
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-white text-black">
-  <NavBar />
-  <ListOfTimes />
-</div>
+    <div className="min-h-screen bg-body text-black">
+      <NavBar />
+      <ListOfTimes />
+    </div>
   )
 }
 

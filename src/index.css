@@ -3,16 +3,31 @@
 
 @keyframes border-glow {
   0% {
-    box-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Soft Blue */
   }
   50% {
-    box-shadow: 0 0 11px rgba(56, 189, 248, 0.9);
+    box-shadow: 0 0 12px rgba(0, 173, 181, 0.8); /* Teal for a modern pop */
   }
   100% {
-    box-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Soft Blue */
   }
 }
 
 .animate-border-glow {
   animation: border-glow 1.5s infinite alternate;
+  border-radius: 8px;
+  border: 1px solid #0096C7; /* Subtle cyan border */
 }
+
+
+
+/* light theme */
+@theme{
+  --color-navbar: #ffffff; /* Pure white for a clean navbar */
+  --color-body: #f5f7fa; /* Slightly warmer light gray for a softer look */
+  --color-listBgEv: #eceff4; /* Soft, neutral gray-blue for even list items */
+  --color-listBgOd: #e2e6ee; /* Slightly darker gray-blue for odd list items */
+  --color-listBorder: #c4cad4; /* Softer border to blend better */
+  --color-listText: #1a1f29; /* Darker shade for better readability */
+}
+

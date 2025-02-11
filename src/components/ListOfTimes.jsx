@@ -66,8 +66,8 @@ const ListOfTimes = () => {
           prayerTimes[prayer] ? (
             <li
               key={prayer}
-              className={`relative flex justify-between items-center bg-white  px-4 py-3 border border-gray-600 rounded-xl mb-3 mt-2
-    ${index % 2 === 0 ? 'bg-base-100' : 'bg-base-200'}
+              className={`relative flex justify-between items-center text-listText px-4 py-3 border border-listBorder rounded-xl mb-3 mt-2 shadow-sm
+    ${index % 2 === 0 ? 'bg-listBgEv' : 'bg-listBgOd'}
     ${
       prayer === nextPrayer ? 'border border-red-300 animate-border-glow' : ''
     }`} // Apply border animation
