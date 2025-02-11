@@ -23,7 +23,7 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className="bg-navbar">
+    <div className="bg-navbar text-white">
       <div className="navbar shadow-sm border-b border-b-gray-300">
         <div className="flex-1">
           <p className="btn btn-ghost text-xl  hover:border-gray-700">
