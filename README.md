@@ -56,7 +56,5 @@ Azan Times is a web application that helps Muslims find accurate prayer times ba
 - The prayer times will be displayed according to your selected location
 
 ---
-
----
 ## 🙌 Why This App?
 This project is useful for **Muslims** who want to stay updated with accurate prayer times no matter where they are. It provides a seamless way to find prayer times quickly using **location-based detection.**
