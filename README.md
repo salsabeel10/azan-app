@@ -35,7 +35,7 @@ Azan Times is a web application that helps Muslims find accurate prayer times ba
 
    ```bash
    git clone https://github.com/yourusername/azan-times.git
-   cd azan-times
+   cd azan-app
 2. **Install dependencies:**
 
    ```bash
