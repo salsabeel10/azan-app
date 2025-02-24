@@ -10,7 +10,7 @@ const RadioButtons = () => {
           type="radio"
           name="locationType"
           value='manual'
-          className="radio radio-accent"
+          className="radio radio-info"
           checked={locationType === 'manual'}
           onChange={() => setLocationType('manual')}
         />
@@ -21,7 +21,7 @@ const RadioButtons = () => {
           type="radio"
           name="locationType"
           value="auto"
-          className="radio radio-accent"
+          className="radio radio-info"
           checked={locationType === 'auto'}
           onChange={() => setLocationType('auto')}
         />

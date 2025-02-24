@@ -61,12 +61,12 @@ const ListOfTimes = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <ul className="rounded-xl w-80 text-white p-1 mb-22">
+      <ul className="rounded-xl w-80 text-base-content p-1 mb-22">
         {orderedPrayers.map((prayer, index) =>
           prayerTimes[prayer] ? (
             <li
               key={prayer}
-              className={`relative flex justify-between items-center px-4 py-3 border-b border-gray-600 rounded-xl mb-3 mt-2
+              className={`relative flex justify-between items-center px-4 py-3 shadow-md border border-gray-300 dark:border-0 dark:border-b dark:border-b-gray-400 rounded-xl mb-3 mt-2
     ${index % 2 === 0 ? 'bg-base-100' : 'bg-base-200'}
     ${
       prayer === nextPrayer ? 'border border-sky-300 animate-border-glow' : ''

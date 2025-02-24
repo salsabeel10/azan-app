@@ -11,6 +11,11 @@ const usePrayerTimeStore = create((set, get) => ({
   latitude: '',
   longitude: '',
   address: '',
+  theme: 'dark',
+  toggleTheme: () =>
+    set((state) => ({
+      theme: state.theme === 'dark' ? 'light' : 'dark',
+    })),
   setFetchType: (type) => set({ fetchType: type }),
 
   fetchPrayerTimes: async (type) => {

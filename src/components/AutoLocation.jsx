@@ -25,7 +25,7 @@ const AutoLocation = () => {
   }
   return (
     <div className="flex justify-center items-center">
-      <div className="flex flex-col items-center gap-2 p-4 rounded-lg shadow-lg mt-28">
+      <div className="flex bg-base-100 flex-col items-center gap-2 p-4 rounded-lg shadow-lg mt-28">
         {/* Input Fields & Search Button */}
         <div className="flex items-center gap-2">
           <label className="input flex items-center border border-gray-900 rounded-lg px-3 py-2">
@@ -103,7 +103,7 @@ const AutoLocation = () => {
             }}
             className={`px-4 py-2 rounded-lg ${
               latitude.trim() && longitude.trim()
-                ? 'bg-gray-600 text-white hover:bg-gray-500 cursor-pointer'
+                ? 'bg-neutral text-neutral-content cursor-pointer'
                 : 'bg-gray-400 text-black cursor-not-allowed'
             }`}
             disabled={!latitude.trim() || !longitude.trim()} // Disable button when input is empty

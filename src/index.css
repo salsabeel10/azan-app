@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @keyframes border-glow {
   0% {
     box-shadow: 0 0 5px rgba(56, 189, 248, 0.6);

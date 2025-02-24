@@ -22,8 +22,8 @@ const InputField = () => {
   }
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex items-center gap-2 p-4 rounded-lg shadow-lg mt-28">
+    <div className="flex  justify-center items-center">
+      <div className="flex bg-base-100 items-center gap-2 p-4 rounded-lg shadow-lg mt-28">
         <label className="input flex items-center border border-gray-900 rounded-lg px-3 py-2">
           <svg
             className="h-5 w-5 opacity-50"
@@ -62,8 +62,8 @@ const InputField = () => {
           }}
           className={`px-4 py-2 rounded-lg ${
             address.trim()
-              ? 'bg-gray-600 text-white hover:bg-gray-500 cursor-pointer'
-              : 'bg-gray-400 text-black cursor-not-allowed'
+              ? 'bg-neutral text-neutral-content cursor-pointer'
+              : 'bg-gray-500 text-gray-300 cursor-not-allowed'
           }`}
           disabled={!address.trim()} // Disable button when input is empty
         >

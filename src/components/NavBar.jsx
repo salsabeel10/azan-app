@@ -3,10 +3,12 @@ import { formattedDate } from '../store/timeFormat'
 import { Link } from 'react-router-dom'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import ThemeControl from './ThemeControl'
 
 const NavBar = () => {
   const [currentTime, setCurrentTime] = useState('')
   const { address } = usePrayerTimeStore()
+
 
   useEffect(() => {
     // Function to update time every second
@@ -40,7 +42,9 @@ const NavBar = () => {
             </Link>
           </p>
         </div>
-
+        <div>
+        <ThemeControl />
+        </div>
         <div className="flex-none">
           <span className="text-sm">{formattedDate}</span>
           <br />
