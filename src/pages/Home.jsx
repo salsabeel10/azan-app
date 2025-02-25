@@ -5,7 +5,7 @@ import ListOfTimes from '../components/ListOfTimes'
 
 const Home = () => {
   return (
-    <div className="bg-base-200 min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <NavBar />
       <ListOfTimes />
     </div>
