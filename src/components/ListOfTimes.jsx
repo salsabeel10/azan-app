@@ -66,11 +66,13 @@ const ListOfTimes = () => {
           prayerTimes[prayer] ? (
             <li
               key={prayer}
-              className={`relative flex justify-between items-center px-4 py-3 shadow-md border border-gray-300 dark:border dark:border-gray-700 rounded-xl mb-3 mt-2
+              className={`relative flex justify-between items-center px-4 py-3  rounded-xl mb-3 mt-2
     ${index % 2 === 0 ? 'bg-base-100' : 'bg-base-200'}
     ${
-      prayer === nextPrayer ? 'border border-sky-300 animate-border-glow' : ''
-    }`} // Apply border animation
+      prayer === nextPrayer
+        ? 'border border-sky-300 animate-border-glow'
+        : 'border border-gray-300 dark:border-gray-700 shadow-md'
+    }`}
             >
               <span className="font-medium text-lg">{prayer}</span>
               <span className="text-md font-semibold">

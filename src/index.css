@@ -5,13 +5,13 @@
 
 @keyframes border-glow {
   0% {
-    box-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 5px rgba(2, 132, 199, 0.6); /* sky-600 */
   }
   50% {
-    box-shadow: 0 0 11px rgba(56, 189, 248, 0.9);
+    box-shadow: 0 0 13px rgba(2, 132, 199, 0.9);
   }
   100% {
-    box-shadow: 0 0 5px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 15px rgba(2, 132, 199, 0.6);
   }
 }
 
