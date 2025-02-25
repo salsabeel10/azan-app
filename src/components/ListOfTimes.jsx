@@ -71,7 +71,7 @@ const ListOfTimes = () => {
     ${
       prayer === nextPrayer
         ? 'border border-sky-300 animate-border-glow'
-        : 'border border-gray-300 dark:border-gray-700 shadow-md'
+        : 'border border-gray-300 dark:border-gray-600 shadow-md'
     }`}
             >
               <span className="font-medium text-lg">{prayer}</span>
