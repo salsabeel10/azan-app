@@ -26,7 +26,7 @@ const usePrayerTimeStore = create((set, get) => ({
     let url = ''
 
     if (fetchType === 'fixed') {
-      url = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=25.300128&longitude=55.378632&method=3&calendarMethod=UAQ&midnightMode=1&tune=0,0,0,0,0,2`
+      url = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=25.300128&longitude=55.378632&method=3&calendarMethod=UAQ&midnightMode=1&tune=0,-2,0,0,0,0,0,0,-1,`
     } else if (fetchType === 'coordinate') {
       if (!latitude || !longitude) {
         set({ error: 'Latitude and Longitude are required', loading: false })
