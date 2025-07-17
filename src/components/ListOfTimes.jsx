@@ -96,7 +96,7 @@ const ListOfTimes = () => {
         </span>
       </p>
 
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center pt-18">
         <ul className="rounded-xl w-80 text-base-content p-1 mb-22">
           {orderedPrayers.map((prayer, index) =>
             prayerTimes[prayer] ? (
