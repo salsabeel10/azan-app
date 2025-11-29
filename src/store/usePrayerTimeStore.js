@@ -68,7 +68,7 @@ const usePrayerTimeStore = create((set, get) => ({
         set({
           prayerTimes: JSON.parse(cached),
           loading: false,
-          error: "Unable to fetch. Showing saved prayer times.",
+          error: null, // no red message
         });
       } else {
         set({ error: "Failed to fetch prayer times", loading: false });
