@@ -17,9 +17,9 @@ const Footer = () => {
 
         {/* Right: Links */}
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-cyan-500 transition">Github</a>
-          <a href="#" className="hover:text-cyan-500 transition">Contact</a>
-          <a href="#" className="hover:text-cyan-500 transition">About</a>
+          <a href="https://github.com/salsabeel10/azan-app" className="hover:text-cyan-500 transition">Github</a>
+          <a href="https://salsabeelibrahim.com/#contact" className="hover:text-cyan-500 transition">Contact</a>
+          <a href="https://salsabeelibrahim.com/" className="hover:text-cyan-500 transition">About Me</a>
         </div>
 
       </div>
