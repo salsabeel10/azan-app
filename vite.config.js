@@ -8,14 +8,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
 
-    // === PWA plugin ===
     VitePWA({
       registerType: 'autoUpdate',
+
       includeAssets: [
         'favicon.ico',
         'apple-touch-icon.png',
         'mask-icon.svg',
       ],
+
       manifest: {
         name: 'Prayer Times',
         short_name: 'Azan',
@@ -37,19 +38,44 @@ export default defineConfig({
         ],
       },
 
-      // Optional: cache API responses as backup
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globPatterns: [
+          '**/*.{js,css,html,ico,png,svg}'
+        ],
+
+        // Prevent index.html from hijacking your API request
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [
+          /^https:\/\/api\.aladhan\.com\//,
+        ],
 
         runtimeCaching: [
+          // Cache API JSON safely
           {
-            urlPattern: ({ url }) => url.origin === 'https://api.aladhan.com',
+            urlPattern: /^https:\/\/api\.aladhan\.com\/.*/i,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'prayer-api-cache',
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
               expiration: {
                 maxEntries: 20,
-                maxAgeSeconds: 24 * 60 * 60, // 1 day
+                maxAgeSeconds: 60 * 60 * 24, // 1 day
+              },
+            },
+          },
+
+          // Cache static assets (CSS, JS, images)
+          {
+            urlPattern: ({ request }) =>
+              ['style', 'script', 'worker', 'image'].includes(request.destination),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'static-cache',
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
               },
             },
           },
