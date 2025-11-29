@@ -41,41 +41,62 @@ const usePrayerTimeStore = create((set, get) => ({
       url = `https://api.aladhan.com/v1/timingsByAddress/${formattedDate}?address=${address}&method=3&calendarMethod=UAQ&midnightMode=1`;
     }
 
-    // STEP A — Get cached data if offline
+    console.log("Fetching:", url);
+
     const cached = localStorage.getItem("prayerTimes");
-    if (!navigator.onLine && cached) {
-      set({
-        prayerTimes: JSON.parse(cached),
-        loading: false,
-        error: "Offline mode. Showing saved prayer times.",
-      });
-      return;
-    }
 
     try {
       const response = await axios.get(url);
+
+      // API returned error (invalid date, future date, invalid address)
+      if (
+        !response.data ||
+        !response.data.data ||
+        !response.data.data.timings
+      ) {
+        throw new Error("Invalid API response");
+      }
+
       const timings = response.data.data.timings;
 
-      // STEP B — Save fresh data into cache
+      // Save updated data
       localStorage.setItem("prayerTimes", JSON.stringify(timings));
 
-      set({ prayerTimes: timings, loading: false });
+      set({ prayerTimes: timings, loading: false, error: null });
     } catch (error) {
-      console.error("Error fetching prayer times:", error);
+      console.error("API FAILED:", error);
 
-      // STEP C — If API fails but cache exists, use it
-      if (cached) {
-        set({
-          prayerTimes: JSON.parse(cached),
-          loading: false,
-          error: null, // no red message
-        });
+      if (navigator.onLine) {
+        // Online but API failed → do NOT show offline mode
+        if (cached) {
+          set({
+            prayerTimes: JSON.parse(cached),
+            loading: false,
+            error: "Using last saved data.",
+          });
+        } else {
+          set({
+            loading: false,
+            error: "Unable to fetch prayer times.",
+          });
+        }
       } else {
-        set({ error: "Failed to fetch prayer times", loading: false });
+        // REAL offline case
+        if (cached) {
+          set({
+            prayerTimes: JSON.parse(cached),
+            loading: false,
+            error: "Offline mode. Showing saved prayer times.",
+          });
+        } else {
+          set({
+            loading: false,
+            error: "You're offline and no saved times available.",
+          });
+        }
       }
     }
   },
-
   //radio button mode
   setLocationType: (type) => set({ locationType: type }),
 
