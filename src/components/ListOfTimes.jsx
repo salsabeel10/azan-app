@@ -85,10 +85,12 @@ const ListOfTimes = () => {
   }, [prayerTimes])
 
   if (loading) return <p className="text-center">Loading...</p>
-  if (error) return <p className="text-center text-red-500">{error}</p>
+  if (!prayerTimes && error)
+    return <p className="text-center text-red-500">{error}</p>
   if (!prayerTimes) return <p className="text-center">No data available</p>
   return (
     <div>
+      {error && <p className="text-center text-red-500 mb-2">{error}</p>}
       <p className="pt-2 text-center text-lg font-bold text-gray-800 dark:text-white">
         {nextPrayer} in{' '}
         <span className="text-green-700 dark:text-blue-400">
@@ -104,11 +106,10 @@ const ListOfTimes = () => {
                 key={prayer}
                 className={`relative flex justify-between items-center px-4 py-3  rounded-xl mb-3 mt-2
     ${index % 2 === 0 ? 'bg-base-100' : 'bg-base-200'}
-    ${
-      prayer === nextPrayer
-        ? 'border border-sky-300 animate-border-glow'
-        : 'border border-gray-300 dark:border-gray-600 shadow-md'
-    }`}
+    ${prayer === nextPrayer
+                    ? 'border border-sky-300 animate-border-glow'
+                    : 'border border-gray-300 dark:border-gray-600 shadow-md'
+                  }`}
               >
                 <span className="font-medium text-lg">{prayer}</span>
                 <span className="text-md font-semibold">
