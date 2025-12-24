@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { formattedDate } from '../store/timeFormat'
+
 import { Link } from 'react-router-dom'
 import usePrayerTimeStore from '../store/usePrayerTimeStore'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
@@ -7,6 +7,7 @@ import ThemeControl from './ThemeControl'
 
 const NavBar = () => {
   const [currentTime, setCurrentTime] = useState('')
+  const [currentDate, setCurrentDate] = useState('')
   const { address } = usePrayerTimeStore()
 
 
@@ -18,6 +19,11 @@ const NavBar = () => {
       const minutes = String(now.getMinutes()).padStart(2, '0')
       const ampm = now.getHours() >= 12 ? 'PM' : 'AM'
       setCurrentTime(`${hours}:${minutes} ${ampm}`)
+
+      const day = String(now.getDate()).padStart(2, '0')
+      const month = String(now.getMonth() + 1).padStart(2, '0')
+      const year = now.getFullYear()
+      setCurrentDate(`${day}-${month}-${year}`)
     }
     updateTime() // Initial call
     const interval = setInterval(updateTime, 1000) // Update time every second
@@ -43,12 +49,11 @@ const NavBar = () => {
           </p>
         </div>
         <div>
-        <ThemeControl />
+          <ThemeControl />
         </div>
-        <div className="flex-none">
-          <span className="text-sm">{formattedDate}</span>
-          <br />
-          <span className="text-sm pl-3">{currentTime}</span>
+        <div className="flex-none text-right pr-4">
+          <span className="text-sm block">{currentDate}</span>
+          <span className="text-sm block">{currentTime}</span>
         </div>
       </div>
     </div>
